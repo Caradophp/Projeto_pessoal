@@ -1,0 +1,24 @@
+# Ignorar arquivos do ambiente do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de log e cache
+*.log
+cache/
+logs/
+
+# Ignorar dependências do Composer
+/vendor/
+composer.lock
+
+# Ignorar arquivos do ambiente do PHPStorm e VSCode
+.idea/
+.vscode/
+
+# Ignorar uploads e arquivos temporários
+uploads/
+tmp/
+
+# Ignorar banco de dados SQLite (se usado)
+*.sqlite
+*.sqlite3
