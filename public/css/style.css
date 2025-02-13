@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+form {
+    padding: 50px;
+}
+
+.pcorpo {
+    background-color: rgb(121, 121, 123);
+    padding: 25px;
+}
+
+#pfinal {
+    background-color: black;
+    color: white;
+    padding: 25px;
+}
+
+.hinfo {
+    border: 3px solid white;
+    padding: 5px;
+    color: white;
+    /*margin-right: 900px;*/
+}
+
+.infos {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.lateral {
+    display: flex;
+    flex-direction: column;
+    margin-right: 1380px;
+    background-color: rgb(32, 32, 33);
+}
+
+.lateral a {
+    text-decoration: none;
+    color: white;
+}
+
+@media only screen and (max-width: 1000px) {
+
+.infos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+ }
+}
