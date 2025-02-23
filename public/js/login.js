@@ -1,20 +1,27 @@
 const nome = document.getElementById("nome");
 const senha = document.getElementById("senha");
 const form = document.getElementById("form");
-//const msg = document.getElementById("msg");
+const loader = document.getElementById("loader");
+const Message = document.getElementById("Message");
 
 form.addEventListener("submit", (event)=>{
     event.preventDefault();
     
     if (nome.value == "") {
-        alert("Preencha todos os campos");
+        Message.innerHTML = "O campo nome é Obrigatório";
         return;
     }
 
      if (senha.value == "") {
-        alert("Preencha todos os campos");
+        Message.innerHTML = "O campo senha é Obrigatório";
         return;
     }
 
-    form.submit();
+    loader.style.display = "block";
+
+    setTimeout(()=>{
+        form.submit();
+    }, 3000); 
+
 });
+

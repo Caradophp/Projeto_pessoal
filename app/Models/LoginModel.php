@@ -20,19 +20,10 @@ class loginModel {
         $resultado = $sql->fetch(PDO::FETCH_ASSOC);
 
         if ($resultado) {
-            $senhaBanco = $resultado['senha']; // Senha armazenada no banco (MD5)
-
-            if (md5($senha)=== $senhaBanco) {
-
-                var_dump($senhaBanco);
-                echo "✅ Login realizado com sucesso!";
-                return true;
-            } else {
-                var_dump(md5($senha));
-                echo "❌ Senha incorreta!";
-            }
+            return true;
         } else {
-            echo "❌ Usuário não encontrado!";
+            return false;
         }
+
     }
 }

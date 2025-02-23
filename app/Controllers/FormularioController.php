@@ -7,7 +7,9 @@ use Twig\Loader\FilesystemLoader;
 use app\Models\ConectarModel;
 use app\Models\CadastrarModel;
 use app\Models\LoginModel;
+use App\Middlewares\logout;
 
+require_once __DIR__ . '/../Middlewares/logout.php';
 require_once __DIR__ . '/../../vendor/autoload.php';
 
 class FormularioController {
@@ -41,7 +43,8 @@ class FormularioController {
     }
 
     public function cadastrar() {
-
+        ini_set('session.gc_maxlifetime', 1800); 
+        session_start();
         $nome = $_POST['nome'];
         $senha = $_POST['senha'];
 
@@ -49,6 +52,8 @@ class FormularioController {
              $insert = new cadastrarModel();
              $insert->insert($nome,$senha);
 
+             $_SESSION['usuario'] = $nome;
+             $_SESSION['senha'] = $senha;
              header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
         } catch (\Throwable $th) {
             echo "Erro ao cadastrar " . $th;
@@ -57,7 +62,9 @@ class FormularioController {
     }
 
     public function login() {
-       
+        ini_set('session.gc_maxlifetime', 1800); 
+        session_start();
+        $message = null;
         $url = 'login';
         $title = 'Login';
 
@@ -67,27 +74,15 @@ class FormularioController {
 
         if (!empty($nome) && !empty($senha)) {
             $ver = new loginModel();
-            $autenticado = $ver->verificacao($nome, $senha);
+            $usuario = $ver->verificacao($nome, $senha);
 
-            if ($autenticado == true) {
+            if ($usuario) {
+                $_SESSION['usuario'] = $nome;
+                $_SESSION['senha'] = $senha;
                 header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
                 exit;
             } else {
-                echo "<!DOCTYPE html>
-<html lang='pt-br'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
-  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script>
-</head>
-<body>
- <center><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class='alert alert-danger'>Dados Incorretos</div>
-</center>
-</body>
-</html>";
+                $message = "Erro ao logar Usuário ou senha incorretos!";
                 return;
             }
         } else {
@@ -101,7 +96,16 @@ class FormularioController {
     }
     echo $this->twig->render('templete.php', [
         'title' => $title,
-        'conteudo' => $this->twig->render("$url.php")
+        'conteudo' => $this->twig->render("$url.php", [
+            'error' => $message
+        ])
     ]);
+}
+
+public function sair() {
+    session_start();
+    session_destroy();
+    header('Location: http://localhost/deucerto/phpup/Model_View_Controller/formulario/login');
+    exit();
 }
 }

@@ -5,6 +5,9 @@ namespace app\Controllers;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use app\Models\adminpainelModel;
+use App\Middlewares\AuthMiddleware;
+
+require_once __DIR__ . '/../Middlewares/AuthMiddleware.php';
 
 class AdminpainelController {
 
@@ -12,12 +15,14 @@ class AdminpainelController {
 
     public function __construct() {
 
+        session_start();
         $loader = new FilesystemLoader(__DIR__ . '/../Views/admin');
         $this->twig = new Environment($loader);
     }
 
     public function index() {
 
+           AuthMiddleware::verificarAutenticacao();
            $url = 'painel';
            $title = 'Painel';
            $exib = new adminpainelModel();

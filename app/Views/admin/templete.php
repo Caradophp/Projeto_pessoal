@@ -82,7 +82,7 @@
            &nbsp&nbsp&nbsp&nbsp&nbsp
            &nbsp&nbsp&nbsp&nbsp&nbsp
            &nbsp&nbsp&nbsp&nbsp
-           <button class="btn btn-warning"><a href="http://localhost/deucerto/phpup/Model_View_Controller/formulario/login" style="text-decoration: none; color:black;">LOGIN</a></button>
+           <button class="btn btn-warning"><a href="http://localhost/deucerto/phpup/Model_View_Controller/formulario/sair" style="text-decoration: none; color:black;">SAIR</a></button>
           </div>
          </div>
         </nav>
@@ -98,7 +98,7 @@
         </ul>
         <div style="text-align:center;">
             <p>©Todos os direitos reservados. 2025</p>
-            <p>Desenvolvido por<strong class="text-warning">Luciano Friebe Feigl</strong></p>
+            <p>Desenvolvido por <strong class="text-warning">Luciano Friebe Feigl</strong></p>
         </div>
     <footer>
     
