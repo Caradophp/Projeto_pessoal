@@ -61,6 +61,11 @@
     border-radius: 5px;
 }
 
+.box a {
+    text-decoration: none;
+    color: white;
+}
+
 /* Cores */
 .blue { background-color: #007bff; }
 .green { background-color: #28a745; }
