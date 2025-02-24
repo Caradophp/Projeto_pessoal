@@ -3,6 +3,7 @@
 require_once '../vendor/autoload.php';
 
 use app\Controllers\HomeController;
+use App\Classes\Routes;
 
 //$meuNome = 'Luciano';
 $uri = $_SERVER['REQUEST_URI'];
