@@ -5,6 +5,8 @@ namespace app\Models;
 use PDO;
 use app\functions\db_config;  
 
+require_once __DIR__ . '/../Middlewares/AuthMiddleware.php';
+
 class conectarModel {
 
     private $host = DB_HOST;
@@ -15,7 +17,7 @@ class conectarModel {
     public function connect(){
 
         try {
-            $conn = new PDO('mysql:dbname={$this->$host};host=localhost', "root", "");
+            $conn = new PDO('mysql:dbname=users;host=localhost', "root", "");
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Conectado com sucesso!!!";
             return $conn;
