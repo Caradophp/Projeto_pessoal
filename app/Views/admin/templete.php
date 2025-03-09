@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{title}}</title>
     <link rel="stylesheet" href="http://localhost/deucerto/phpup/Model_View_Controller/public/css/new.css">
+    <link rel="stylesheet" href="http://localhost/deucerto/phpup/Model_View_Controller/public/css/telas.css">
     <link rel="shortcut icon" href="http://localhost/deucerto/phpup/Model_View_Controller/public/img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" 
@@ -89,6 +90,40 @@
     </header>
     <main class="pcorpo">
         {{conteudo | raw}}
+        
+        <div id="dividasTelaResultado" style="display:block;">
+    <h3>Resultado da Busca</h3>
+    
+    {% if resultado is not empty %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Categoria</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in resultado %}
+                    <tr>
+                        <td>{{ item.descricao }}</td>
+                        <td>{{ item.valor }}</td>
+                        <td>{{ item.categoria }}</td>
+                        <td>{{ item.observacao }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum dado encontrado para o status informado.</p>
+    {% endif %}
+    
+    <center>
+        <button onclick="dividasListaTelaFechar()" id="fecharPaginaResultado" class="btn btn-danger">Fechar</button>
+    </center>
+</div>
+
     </main>
     <footer id="pfinal">
         <ul>
@@ -101,7 +136,7 @@
             <p>Desenvolvido por <strong class="text-warning">Luciano Friebe Feigl</strong></p>
         </div>
     <footer>
-    
+    <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/tela.js"></script>
     <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
