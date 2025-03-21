@@ -48,18 +48,28 @@ class FormularioController {
         $nome = $_POST['nome'];
         $senha = $_POST['senha'];
 
-        try {
-             $insert = new cadastrarModel();
-             $insert->insert($nome,$senha);
+        if ($_POST['nome'] != "" && $_POST['nome'] != null) {
 
-             $_SESSION['usuario'] = $nome;
-             $_SESSION['senha'] = $senha;
-             header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
-        } catch (\Throwable $th) {
-            echo "Erro ao cadastrar " . $th;
+            if ($_POST['senha'] != "" && $_POST['senha'] != null) {
+                
+                try {
+                    $insert = new cadastrarModel();
+                    $insert->insert($nome,$senha);
+       
+                    $_SESSION['usuario'] = $nome;
+                    $_SESSION['senha'] = $senha;
+                    header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
+               } catch (\Throwable $th) {
+                   echo "Erro ao cadastrar " . $th;
+               }
+            } else {
+                echo "Preencha a senha";
+            }
+        } else {
+            echo "Preencha o nome";
         }
         //var_dump($senha);
-    }
+    } 
 
     public function login() {
         ini_set('session.gc_maxlifetime', 1800); 

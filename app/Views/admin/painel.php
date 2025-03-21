@@ -1,5 +1,5 @@
  <div class="grid-container">
-        <div class="box blue" onclick="transacoesTelaAbrir()">Depósitos</div>
+        <div class="box blue" onclick="transacoesTelaAbrir()">Transação</div>
         <div class="box yellow" onclick="debitosTelaAbrir()">Débitos</div>
         <div class="box red" onclick="dividasTelaAbrir()">Divídas</div>
         <div class="box purple" onclick="prestacaoTelaAbrir()">Prestação de contas</div>
@@ -8,6 +8,43 @@
         <!-- <div class="box lightblue"><a href="">Elements</a></div>
         <div class="box teal"><a href="">Calendar</a></div>
         <div class="box gold"><a href="">Errors</a></div> -->
+ </div>
+
+ <div>
+ <br>
+    <h2 style="text-align: center;">Relatório de Transações</h2>
+    <br>
+    <div class="container">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Data</th>
+                <th>Status</th>
+            </tr>
+            {% for item in dados %}
+            <tr>
+                <td>{{ item.id }}</td>
+                <td>{{ item.usuario_id }}</td>
+                <td>{{ item.descricao }}</td>
+                <td>R$ {{ item.valor }}</td>
+                <td>{{ item.data_debito }}</td>
+                <td>{{ item.status }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <br>
+    <!-- Botão para baixar o relatório -->
+     <center>
+     <a href="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/gerarPDF" target="_blank" class="btn btn-danger">Baixar PDF</a>
+     </center>
+
+     <br>
+     
  </div>
 
  <div id="transacoesTela" style="display:none;">
@@ -32,30 +69,71 @@
  </div>
 
  <div id="debitosTela" style="display:none;">
-       <form action="teste">
-              <label for="">Origem:</label>
-              <input type="text" class="form-control">
-              <label for="">Destino:</label>
-              <input type="text" class="form-control">
-              <label for="">Tipo:</label>
-              <select  class="form-select">
+    <form action="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/debitosInserir" method="post">
+      <label for="usuario_id">Usuário ID:</label>
+         <select  class="form-select" name="usuario_id">
                    <option value="0">Selecione...</option>
-                   <option value="0">teste</option>
-              </select><br>
-              <center>
-                 <input type="submit" value="Enviar" class="btn btn-info">
-              </center>
-       </form>
-       <br>
-       <center>
-          <button onclick="debitosTelaFechar()" id="fecharPagina" class="btn btn-danger">Fechar</button>
-       </center>
- </div>
+                   {% for user in listaUsuario %}
+                    <option value="{{ user.id }}">{{ user.nome }}</option>
+                   {% endfor %}
+         </select>
+
+        <label for="descricao">Descrição:</label>
+        <input type="text" name="descricao" class="form-control">
+
+        <label for="valor">Valor:</label>
+        <input type="number" step="0.01" name="valor" class="form-control">
+
+        <label for="data_debito">Data de Débito:</label>
+        <input type="date" name="data_debito" class="form-control">
+
+        <label for="categoria">Categoria:</label>
+        <input type="text" name="categoria" class="form-control">
+
+        <label for="forma_pagamento">Forma de Pagamento:</label>
+        <input type="text" name="forma_pagamento" class="form-control">
+
+        <label for="referencia">Referência:</label>
+        <input type="text" name="referencia" class="form-control">
+
+        <label for="status">Status:</label>
+        <select name="status" class="form-select">
+            <option value="0">Selecione...</option>
+            <option value="pendente">Pendente</option>
+            <option value="pago">Pago</option>
+        </select>
+
+        <label for="observacao">Observação:</label>
+        <textarea name="observacao" class="form-control"></textarea>
+
+        <br>
+        <center>
+            <input type="submit" value="Enviar" class="btn btn-info">
+        </center>
+    </form>
+    
+    <br>
+    <center>
+        <button onclick="debitosTelaFechar()" id="fecharPagina" class="btn btn-danger">Fechar</button>
+    </center>
+</div>
 
  <div id="dividasTela" style="display:none;">
     <form action="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/dividaListar" method="post">
+        <label for="usuario_id">Usuário ID:</label>
+        <select  class="form-select" name="usuario_id">
+                   <option value="0">Selecione...</option>
+                   {% for user in listaUsuario %}
+                    <option value="{{ user.id }}">{{ user.nome }}</option>
+                   {% endfor %}
+         </select>
+        <!-- <input type="text" name="usuario_id" class="form-control"> -->
+        <label for="categoria">Categoria:</label>
+        <input type="text" name="categoria" class="form-control">
         <label for="statusDivida">Status:</label>
-        <input type="text" name="statusDivida" class="form-control"><br>
+        <input type="text" name="statusDivida" class="form-control">
+        <label for="forma_pagamento">Forma de Pagamento:</label>
+        <input type="text" name="forma_pagamento" class="form-control"><br>
         <!-- <label for="">Tipo:</label>
               <select  class="form-select" name="statusDivida">
                    <option value="0">Selecione...</option>
@@ -86,7 +164,10 @@
                    <option value="0">teste</option>
               </select><br>
               <center>
-                 <input type="submit" value="Enviar" class="btn btn-info">
+              <button type="submit" class="btn btn-info">
+                 <span class="glyphicon glyphicon-search"></span> Search
+              </button>
+                 
               </center>
        </form>
        <br>
@@ -117,7 +198,7 @@
  </div>
 
  <div id="relatoriosTela" style="display:none;">
-       <form action="teste">
+       <form action="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/relatorio" method="post" target="_blank">
               <label for="">Origem:</label>
               <input type="text" class="form-control">
               <label for="">Destino:</label>

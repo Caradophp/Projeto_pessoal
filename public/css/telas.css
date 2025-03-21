@@ -5,9 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 150px;
-    padding-left: 280px;
-    padding-right: 280px;
+    padding: 50px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }

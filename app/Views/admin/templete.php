@@ -124,6 +124,10 @@
     </center>
 </div>
 
+<div>
+    {{ erro }}
+</div>
+
     </main>
     <footer id="pfinal">
         <ul>
