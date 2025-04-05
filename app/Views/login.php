@@ -1,19 +1,45 @@
 <div style="padding-top: 50px;">
     <div class="alert alert-danger" style="text-align:center;"><strong>Realize login para continuar</strong></div>
-    <form action="http://localhost/deucerto/phpup/Model_View_Controller/formulario/login" method="post" id="form">
+    <form id="loginForm">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" class="form-control"><br><br>
         <label for="senha">Senha:</label>
         <input type="password" name="senha" id="senha" class="form-control"><br><br>
+        <h6>*Esqueceu sua Senha? <a href="">Clique aqui</a></h6>
         <center>
-        {% if error %}
-            <div style="color: red; font-weight: bold;">
-                {{ error }}
-            </div>
-        {% endif %}
+            <p id="mensagemErro" style="color: red;"></p>
             <div id="Message" style="color:red;"></div>
-        <div class="loader" style="display:none;" id="loader"></div>
-        </center>
+            <div class="loader" style="display:none;" id="loader"></div>
+        </center><br>
         <input type="submit" value="enviar" class="btn btn-info" id="confirm">
     </form>
 </div>
+<script>
+$(document).ready(function() {
+    $("#loginForm").submit(function(event) {
+        event.preventDefault(); // Impede o reload da página
+
+        var nome = $("#nome").val();
+        var senha = $("#senha").val();
+
+        $.ajax({
+            url: "http://localhost/deucerto/phpup/Model_View_Controller/login/logar",
+            type: "POST",
+            data: { nome: nome, senha: senha },
+            dataType: "json",
+            success: function(response) {
+                if (response.success) {
+                    window.location.href = "http://localhost/deucerto/phpup/Model_View_Controller/adminpainel";
+                } else {
+                    $("#mensagemErro").text(response.message);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText); // Debug para ver o erro exato no console
+                $("#mensagemErro").text("Erro ao processar a requisição: " + error);
+            }
+        });
+    });
+});
+
+</script>

@@ -30,7 +30,7 @@
               <a class="nav-link" href="http://localhost/deucerto/phpup/Model_View_Controller/contato">CONTATO</a>
              </li>
              <li class="nav-item">
-              <a class="nav-link" href="http://localhost/deucerto/phpup/Model_View_Controller/formulario">CADASTRAR</a>
+              <a class="nav-link" href="http://localhost/deucerto/phpup/Model_View_Controller/cadastrar">CADASTRAR</a>
              </li>
            </ul>
            &nbsp&nbsp&nbsp&nbsp&nbsp
@@ -83,7 +83,7 @@
            &nbsp&nbsp&nbsp&nbsp&nbsp
            &nbsp&nbsp&nbsp&nbsp&nbsp
            &nbsp&nbsp&nbsp&nbsp
-           <button class="btn btn-warning"><a href="http://localhost/deucerto/phpup/Model_View_Controller/formulario/sair" style="text-decoration: none; color:black;">SAIR</a></button>
+           <button class="btn btn-warning"><a href="http://localhost/deucerto/phpup/Model_View_Controller/login/sair" style="text-decoration: none; color:black;">SAIR</a></button>
           </div>
          </div>
         </nav>

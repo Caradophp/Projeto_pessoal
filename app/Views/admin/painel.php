@@ -1,4 +1,4 @@
- <div class="grid-container">
+<div class="grid-container">
         <div class="box blue" onclick="transacoesTelaAbrir()">Transação</div>
         <div class="box yellow" onclick="debitosTelaAbrir()">Débitos</div>
         <div class="box red" onclick="dividasTelaAbrir()">Divídas</div>

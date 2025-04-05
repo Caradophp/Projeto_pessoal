@@ -18,6 +18,7 @@ if ($url[4] == "") {
 
 $controllerName = "app\\Controllers\\{$controller}";
 $methodName = $url[5] ?? 'index';
+//var_dump($controllerName);
 
 if(class_exists($controllerName)) {
     $action = new $controllerName;

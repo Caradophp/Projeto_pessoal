@@ -1,36 +1,33 @@
-<?php 
+<?php
 
 namespace app\Models;
 
 use app\Models\ConectarModel;
 use PDO;
 
-class TransacaoModel {
-
-    public function transacaoInserir($origem, $destino) {
-
+class TransacaoModel
+{
+    public function transacaoInserir($origem, $destino)
+    {
         try {
-
             $conn = new conectarModel();
             $db = $conn->connect();
 
             try {
-                
                 $sql = $db->prepare("INSERT INTO transacoes (origem, destino) VALUES (:origem, :destino)");
                 $sql->bindParam(':origem', $origem);
                 $sql->bindParam(':destino', $destino);
                 $sql->execute();
-
             } catch (\Throwable $e) {
-               echo "Erro: " .  $e->getMessage();
+                echo "Erro: " . $e->getMessage();
             }
         } catch (\Throwable $e) {
-            echo "Erro: " .  $e->getMessage();
+            echo "Erro: " . $e->getMessage();
         }
     }
 
-    public function debitoInserir($dados) {
-
+    public function debitoInserir($dados)
+    {
         $usuario_id = $dados['usuario_id'];
         $descricao = $dados['descricao'];
         $valor = $dados['valor'];
@@ -42,13 +39,13 @@ class TransacaoModel {
         $observacao = $dados['observacao'];
 
         try {
-
             $conn = new conectarModel();
             $db = $conn->connect();
 
             try {
-                
-                $sql = $db->prepare("INSERT INTO debitos (usuario_id, descricao, valor, data_debito, categoria, forma_pagamento, referencia, status, observacao) VALUES (:usuario_id, :descricao, :valor, :data_debito, :categoria, :forma_pagamento, :referencia, :status, :observacao)");
+                $sql = $db->prepare(
+                    "INSERT INTO debitos (usuario_id, descricao, valor, data_debito, categoria, forma_pagamento, referencia, status, observacao) VALUES (:usuario_id, :descricao, :valor, :data_debito, :categoria, :forma_pagamento, :referencia, :status, :observacao)"
+                );
                 $sql->bindParam(':usuario_id', $usuario_id);
                 $sql->bindParam(':descricao', $descricao);
                 $sql->bindParam(':valor', $valor);
@@ -59,17 +56,16 @@ class TransacaoModel {
                 $sql->bindParam(':status', $status);
                 $sql->bindParam(':observacao', $observacao);
                 $sql->execute();
-
             } catch (\Throwable $e) {
-               echo "Erro: " .  $e->getMessage();
+                echo "Erro: " . $e->getMessage();
             }
         } catch (\Throwable $e) {
-            echo "Erro: " .  $e->getMessage();
+            echo "Erro: " . $e->getMessage();
         }
     }
 
-    public function dividaListar($dados) {
-
+    public function dividaListar($dados)
+    {
         $usuario_id = $dados['usuario_id'];
         //$valor = $dados['valor'];
         //$data_debito = $dados['data_debito'];
@@ -79,12 +75,10 @@ class TransacaoModel {
         $status = $dados['statusDivida'];
 
         try {
-
             $conn = new conectarModel();
             $db = $conn->connect();
 
             try {
-                
                 $sql = $db->prepare("SELECT * FROM debitos WHERE status = :status OR usuario_id = :usuario_id OR categoria = :categoria OR forma_pagamento = :forma_pagamento");
                 $sql->bindParam(':usuario_id', $usuario_id);
                 $sql->bindParam(':categoria', $categoria);
@@ -95,23 +89,23 @@ class TransacaoModel {
                 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                 return $resultado;
-
             } catch (\Throwable $e) {
-               echo "Erro: " .  $e->getMessage();
+                echo "Erro: " . $e->getMessage();
             }
         } catch (\Throwable $e) {
-            echo "Erro: " .  $e->getMessage();
+            echo "Erro: " . $e->getMessage();
         }
     }
 
-    public function listarTransacoesMensal() {
+    public function listarTransacoesMensal()
+    {
         try {
             $conn = new conectarModel(); // Instância da conexão com o banco
             $db = $conn->connect();
-    
+
             $sql = $db->prepare("SELECT * FROM debitos ORDER BY id");
             $sql->execute();
-    
+
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         } catch (\Throwable $e) {
             echo "Erro ao listar transações: " . $e->getMessage();
@@ -119,43 +113,40 @@ class TransacaoModel {
         }
     }
 
-    public function listarTransacoes() {
+    public function listarTransacoes()
+    {
         try {
             $conn = new conectarModel(); // Instância da conexão com o banco
             $db = $conn->connect();
-    
+
             $sql = $db->prepare("SELECT * FROM debitos ORDER BY id");
             $sql->execute();
-    
+
             return $sql->fetchAll(PDO::FETCH_ASSOC);
         } catch (\Throwable $e) {
             echo "Erro ao listar transações: " . $e->getMessage();
             return [];
         }
     }
-    
 
-    public function usuariosBuscar() {
-
+    public function usuariosBuscar()
+    {
         try {
-
             $conn = new conectarModel();
             $db = $conn->connect();
 
             try {
-                
                 $sql = $db->prepare("SELECT * FROM usuario");
                 $sql->execute();
 
                 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 
                 return $resultado;
-
             } catch (\Throwable $e) {
-               echo "Erro: " .  $e->getMessage();
+                echo "Erro: " . $e->getMessage();
             }
         } catch (\Throwable $e) {
-            echo "Erro: " .  $e->getMessage();
+            echo "Erro: " . $e->getMessage();
         }
     }
 }

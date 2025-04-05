@@ -22,3 +22,4 @@ tmp/
 # Ignorar banco de dados SQLite (se usado)
 *.sqlite
 *.sqlite3
+/nbproject/private/
