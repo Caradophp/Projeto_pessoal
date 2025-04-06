@@ -31,19 +31,19 @@ class LoginController
         session_start();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nome = $_POST['nome'] ?? null;
-            $senha = $_POST['senha'] ?? null;
+            $email = filter_input(INPUT_POST, $_POST['email'], FILTER_VALIDATE_EMAIL) ;
+            $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-            if (empty($nome) || empty($senha)) {
+            if (empty($email) || empty($senha)) {
                 echo json_encode(['success' => false, 'message' => 'Preencha todos os campos.']);
                 exit();
             }
 
             $ver = new loginModel();
-            $usuario = $ver->verificacao($nome, $senha);
+            $usuario = $ver->verificacao($email, $senha);
 
             if ($usuario) {
-                $_SESSION['usuario'] = $nome;
+                $_SESSION['usuario'] = $email;
                 $_SESSION['senha'] = $senha;
                 echo json_encode(['success' => true]);
                 exit();

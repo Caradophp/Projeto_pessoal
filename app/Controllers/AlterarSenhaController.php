@@ -28,15 +28,13 @@ class AlterarSenhaController
     public function login()
     {
         $ts = new LoginModel();
-        $title = "Trocar Senha";
-        $url = "novasenha";
 
         // Validação dos dados de entrada
         $novaSenha = $_POST['senha'] ?? null;
 
         try {
             // Verifica se o usuário existe no banco
-            $usuarioExiste = $ts->buscarNome("admin", 1);
+            $usuarioExiste = $ts->buscarEmail("admin", 1);
 
             if ($usuarioExiste) {
                 // Altera a senha

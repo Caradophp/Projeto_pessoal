@@ -29,28 +29,35 @@ class CadastrarController
     {
         ini_set('session.gc_maxlifetime', 1800);
         session_start();
-        $nome = $_POST['nome'];
-        $senha = $_POST['senha'];
+        $nome =  htmlspecialchars(trim($_POST['nome'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $email = filter_input(INPUT_POST, $_POST['email'], FILTER_VALIDATE_EMAIL) ;
+        $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
 
-        if ($_POST['nome'] != "" && $_POST['nome'] != null) {
-            if ($_POST['senha'] != "" && $_POST['senha'] != null) {
-                try {
-                    $insert = new cadastrarModel();
-                    $insert->insert($nome, $senha);
+        if($_POST['nome'] != "" && $_POST['nome'] != null) {
+            if ($_POST['email'] != "" && $_POST['email'] != null) {
+                if ($_POST['senha'] != "" && $_POST['senha'] != null) {
+                    try {
+                        $insert = new cadastrarModel();
+                        $insert->insert($nome, $email, $senha);
 
-                    $_SESSION['usuario'] = $nome;
-                    $_SESSION['senha'] = $senha;
-                    header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
-                } catch (\Throwable $th) {
-                    echo "Erro ao cadastrar " . $th;
+                        $_SESSION['nome'] = $nome;
+                        $_SESSION['usuario'] = $email;
+                        $_SESSION['senha'] = $senha;
+                        echo json_encode(['success' => true]);
+                        exit();
+                    } catch (\Throwable $th) {
+                        echo json_encode(['success' => false, 'message' => "ERRO: " . $th->getMessage()]);
+                    }
+                } else {
+                    echo json_encode(['success' => false, 'message' => 'Campo senha deve ser preenchido']);
                 }
             } else {
-                echo "Preencha a senha";
+                echo json_encode(['success' => false, 'message' => 'Campo email deve ser preenchido']);
             }
-        } else {
-            echo "Preencha o nome";
-        }
         //var_dump($senha);
+       } else {
+         echo json_encode(['success' => false, 'message' => 'Campo nome deve ser preenchido']);
+       }
     }
 }
 

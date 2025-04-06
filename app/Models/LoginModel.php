@@ -7,13 +7,13 @@ use PDO;
 
 class loginModel
 {
-    public function verificacao($nome, $senha)
+    public function verificacao($email, $senha)
     {
         $conn = new conectarModel();
         $db = $conn->connect();
 
-        $sql = $db->prepare("SELECT senha FROM usuario WHERE nome = :nome");
-        $sql->bindParam(':nome', $nome);
+        $sql = $db->prepare("SELECT senha FROM usuario WHERE email = :email");
+        $sql->bindParam(':email', $email);
         $sql->execute();
 
         $resultado = $sql->fetch(PDO::FETCH_ASSOC);
@@ -43,13 +43,13 @@ class loginModel
         return true;
     }
 
-    public function buscarNome($nome, $id)
+    public function buscarEmail($email, $id)
     {
         $conn = new conectarModel();
         $db = $conn->connect();
 
-        $sql = $db->prepare("SELECT :nome FROM usuario WHERE id = :id");
-        $sql->bindParam(':nome', $nome);
+        $sql = $db->prepare("SELECT :email FROM usuario WHERE id = :id");
+        $sql->bindParam(':email', $email);
         $sql->bindParam(':id', $id);
         $sql->execute();
 
