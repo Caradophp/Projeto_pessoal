@@ -18,10 +18,12 @@ class CadastrarController
 
         $url = "cadastrar";
         $title = "Cadastrar";
+        $script = "Cadastrar";
 
         echo $this->twig->render('templete.php', [
             'title' => $title,
             'conteudo' => $this->twig->render("$url.php", []),
+            'script' => $script
         ]);
     }
 
@@ -30,7 +32,7 @@ class CadastrarController
         ini_set('session.gc_maxlifetime', 1800);
         session_start();
         $nome =  htmlspecialchars(trim($_POST['nome'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $email = filter_input(INPUT_POST, $_POST['email'], FILTER_VALIDATE_EMAIL) ;
+        $email = $_POST['email'];
         $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
 
         if($_POST['nome'] != "" && $_POST['nome'] != null) {
@@ -41,7 +43,7 @@ class CadastrarController
                         $insert->insert($nome, $email, $senha);
 
                         $_SESSION['nome'] = $nome;
-                        $_SESSION['usuario'] = $email;
+                        $_SESSION['email'] = $email;
                         $_SESSION['senha'] = $senha;
                         echo json_encode(['success' => true]);
                         exit();

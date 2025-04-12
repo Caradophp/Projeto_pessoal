@@ -12,7 +12,7 @@ class loginModel
         $conn = new conectarModel();
         $db = $conn->connect();
 
-        $sql = $db->prepare("SELECT senha FROM usuario WHERE email = :email");
+        $sql = $db->prepare("SELECT * FROM usuario WHERE email = :email");
         $sql->bindParam(':email', $email);
         $sql->execute();
 
@@ -22,9 +22,8 @@ class loginModel
             return false;
         }
 
-        // Converte a senha digitada para MD5 antes da verificação
         if ($resultado['senha'] === md5($senha)) {
-            return true;
+            return $resultado; // retorna os dados do usuário
         }
 
         return false;

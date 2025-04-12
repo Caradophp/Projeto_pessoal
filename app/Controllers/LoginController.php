@@ -18,10 +18,12 @@ class LoginController
 
         $url = "login";
         $title = "Login";
+        $script = "Logon";
 
         echo $this->twig->render('templete.php', [
             'title' => $title,
             'conteudo' => $this->twig->render("$url.php", []),
+            'script' => $script
         ]);
     }
 
@@ -31,8 +33,8 @@ class LoginController
         session_start();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $email = filter_input(INPUT_POST, $_POST['email'], FILTER_VALIDATE_EMAIL) ;
-            $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
+            $email = $_POST['email'];
+            $senha =$_POST['senha'];
 
             if (empty($email) || empty($senha)) {
                 echo json_encode(['success' => false, 'message' => 'Preencha todos os campos.']);
@@ -43,7 +45,7 @@ class LoginController
             $usuario = $ver->verificacao($email, $senha);
 
             if ($usuario) {
-                $_SESSION['usuario'] = $email;
+                $_SESSION['email'] = $email;
                 $_SESSION['senha'] = $senha;
                 echo json_encode(['success' => true]);
                 exit();

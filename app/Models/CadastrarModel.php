@@ -15,7 +15,8 @@ class cadastrarModel {
         $sql = $db->prepare("INSERT INTO usuario (nome,email, senha) VALUES (:nome, :email, :senha)");
         $sql->bindParam(':nome', $nome);
         $sql->bindParam(':email', $email);
-        $sql->bindParam(':senha', md5($senha));
+        $senhaHash = md5($senha);
+        $sql->bindParam(':senha', $senhaHash);
         $sql->execute();
     }
 }

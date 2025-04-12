@@ -1,35 +1,35 @@
-# Use a imagem oficial do PHP com Apache
+# Imagem base com PHP e Apache
 FROM php:8.1-apache
 
-# Instalações necessárias para o PHP
+# Instalar dependências necessárias
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    libxml2-dev \
+    unzip \
+    git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd
+    && docker-php-ext-install gd pdo pdo_mysql mysqli
 
-# Habilita mod_rewrite para o Apache
-RUN a2enmod rewrite
+# Instalar Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Configura o diretório onde o código será copiado
-WORKDIR /var/www/html
+# Copiar composer.json e composer.lock para instalar dependências primeiro (melhor pro cache)
+COPY composer.json composer.lock ./
+COPY vendor ./
 
-# Copia o código do projeto para dentro do contêiner
+# Instalar as dependências
+RUN composer install
+
+# Copiar o restante do projeto (inclusive pasta public e vendor)
 COPY . /var/www/html/
 
-# Define permissões adequadas para os arquivos
-RUN chown -R www-data:www-data /var/www/html
+# Ativar mod_rewrite do Apache
+RUN a2enmod rewrite
 
-# Instala o Composer (gerenciador de dependências do PHP)
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/composer
+# Definir o diretório de trabalho
+WORKDIR /var/www/html
 
-# Instala as dependências do PHP com o Composer
-RUN composer install --no-interaction --prefer-dist
-
-# Expõe a porta 80 para o Apache
+# Expor a porta 80
 EXPOSE 80
-
-# Inicia o Apache no contêiner
-CMD ["apache2-foreground"]

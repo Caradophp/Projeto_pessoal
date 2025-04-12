@@ -21,7 +21,7 @@ class conectarModel {
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Conectado com sucesso!!!";
             return $conn;
-        } catch (PDOException $th) {
+        } catch (\PDOException $th) {
            echo "Não foi possível conectar " . $th;
         }
     }
