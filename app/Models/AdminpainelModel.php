@@ -25,5 +25,56 @@ class adminpainelModel {
             echo "Nenhum registro encontrado.";
         }
     }
+
+    public function excluir($id)
+    {
+        try {
+            $conn = new conectarModel();
+            $db = $conn->connect();
+
+            $sql = $db->prepare("DELETE FROM usuario WHERE id = :id");
+            $sql->bindParam(":id", $id);
+            $sql->execute();
+        } catch (\Throwable $e) {
+           echo $e->getMessage();
+            
+        }
+    }
+
+    public function alterar($dados)
+    {
+        try {
+            $conn = new conectarModel();
+            $db = $conn->connect();
+    
+            $sql = $db->prepare("UPDATE FROM usuario SET nome = : nome, email = :email WHERE id = :id");
+            $sql->bindParam(":nome", $dados['nome']);
+            $sql->bindParam(":email", $dados['email']);
+            $sql->bindParam(":id", $dados['id']);
+            $sql->execute();
+        } catch (\Throwable $e) {
+            echo $e->getMessage();
+             
+        }
+    }
+
+    public function buscarDados($id) 
+    {
+        try {
+            $conn = new conectarModel();
+            $db = $conn->connect();
+
+            $sql = $db->prepare("SELECT * FROM usuario WHERE id = :id");
+            $sql->bindParam(":id", $id);
+            $sql->execute();
+
+            $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $resultado;
+        } catch (\Throwable $e) {
+            echo $e->getMessage();
+             
+        }
+    }
     
 }

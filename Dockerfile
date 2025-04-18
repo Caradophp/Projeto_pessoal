@@ -15,21 +15,17 @@ RUN apt-get update && apt-get install -y \
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copiar composer.json e composer.lock para instalar dependências primeiro (melhor pro cache)
-COPY composer.json composer.lock ./
-COPY vendor ./
+# Definir o diretório de trabalho
+WORKDIR /var/www/html
 
-# Instalar as dependências
+# Copiar o projeto completo (inclusive vendor, se ela existir no host)
+COPY . .
+
+# Instalar as dependências (se a vendor não existir no host, isso vai criá-la)
 RUN composer install
-
-# Copiar o restante do projeto (inclusive pasta public e vendor)
-COPY . /var/www/html/
 
 # Ativar mod_rewrite do Apache
 RUN a2enmod rewrite
-
-# Definir o diretório de trabalho
-WORKDIR /var/www/html
 
 # Expor a porta 80
 EXPOSE 80

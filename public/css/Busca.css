@@ -1,0 +1,43 @@
+#busca {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* espaço entre os itens */
+    padding: 10px;
+}
+
+#procurar {
+    width: 150px; /* define o tamanho da barra de pesquisa */
+}
+
+button {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.barra {
+	background-color: white;
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.alinha {
+    display: flex;
+    flex-direction: row;
+}
+
+#pencil {
+    text-decoration: none;
+    color: aqua;
+}
+
+#trash{
+    text-decoration: none;
+    color: red;
+}
+
+
+.options {
+    position: relative;
+    display: flex;
+    justify-content: right;
+}

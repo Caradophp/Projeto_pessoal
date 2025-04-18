@@ -26,6 +26,8 @@ class AdminpainelController {
         $url = 'painel';
         $title = 'Painel';
 
+        //$this->buscar();
+
         echo $this->twig->render('templete.php', [ 
             'title' => $title,
             'conteudo' => $this->verificaPagina($url),
@@ -36,10 +38,23 @@ class AdminpainelController {
 
         $relatorio = $this->relatorioUltimoMes();
         $resultado = $this->usuariosSelecionar();
+        //$resultBusca = $this->buscar() ?? '';
         return $this->twig->render("$page.php", [ 
                'listaUsuario' => $resultado,
-               'dados' => $relatorio
+               'dados' => $relatorio,
+               //'resultado' => $resultBusca
         ]);
+    }
+
+    public function buscar() {
+        $dado = $_POST['dado'] ?? '';
+
+        $busca = new TransacaoModel();
+        $resultado = $busca->pesquisar($dado);
+        echo json_encode($resultado);
+        exit();
+        // for ($i = 0; $i < count($resultado) && $i < 5; $i++) {
+        // echo $resultado[$i]['nome'] . "<br>"; // ou qualquer outro campo que tiver
     }
 
     public function transacao() {
@@ -165,7 +180,7 @@ class AdminpainelController {
             $pdf->Ln();
         }
         
-        $pdf->Output('D'. 'Relatorio_Transacoes'); // Gera o PDF
+        $pdf->Output('D', 'Relatorio_Transacoes.pdf'); // Gera o PDF
         
     }
 
@@ -188,6 +203,42 @@ class AdminpainelController {
             return $resultado;
         } catch (\Throwable $e) {
             echo "Erro: " . $e->getMessage();
+        }
+    }
+
+    public function alterar() {
+        
+        $uri = $_SERVER['REQUEST_URI'];
+
+        $url = explode('/', trim($uri));
+
+        //$id = $url[6] ?? '';
+
+        $dados = $_POST;
+        
+        try {
+            $del = new AdminPainelModel();
+            $del->alterar($dados);
+            header('Location:http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function excluir() {
+
+        $uri = $_SERVER['REQUEST_URI'];
+
+        $url = explode('/', trim($uri));
+
+        $id = $url[6] ?? '';
+        
+        try {
+            $del = new AdminPainelModel();
+            $del->excluir($id);
+            header('Location:http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
+        } catch (\Exception $e) {
+            echo $e->getMessage();
         }
     }
 }

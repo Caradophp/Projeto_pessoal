@@ -18,27 +18,12 @@ if ($url[4] == "") {
 
 $controllerName = "app\\Controllers\\{$controller}";
 $methodName = $url[5] ?? 'index';
+$idValue = $url[6] ?? '';
 //var_dump($controllerName);
 
 if(class_exists($controllerName)) {
     $action = new $controllerName;
     $action->$methodName();
-} else {
-    echo "<!DOCTYPE html>
-<html lang='pt-br'>
-<head>
-    <meta charset='UTF-8'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Document</title>
-    <link href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet'>
-  <script src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js'></script>
-</head>
-<body>
- <center><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class='alert alert-danger'>Essa página não existe</div>
-</center>
-</body>
-</html>";
 }
 //$action = new $controllerName;
 // var_dump($controller);

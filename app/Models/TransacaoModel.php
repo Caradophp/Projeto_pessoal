@@ -7,6 +7,31 @@ use PDO;
 
 class TransacaoModel
 {
+
+    public function pesquisar($dado)
+    {
+        try {
+            $conn = new conectarModel();
+            $db = $conn->connect();
+
+            try{
+                $sql = $db->prepare("SELECT id, nome FROM usuario WHERE nome LIKE :dado");
+                $dados = "%" . $dado . "%";
+                $sql->bindParam(':dado', $dados,PDO::PARAM_STR);
+                $sql->execute();
+
+                $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+                return $resultado;
+            } catch (\Throwable $e) {
+                echo "Erro: " . $e->getMessage();
+                
+            }
+        } catch (\Throwable $e) {
+            echo "Erro: " . $e->getMessage();
+            
+        }
+    }
+
     public function transacaoInserir($origem, $destino)
     {
         try {

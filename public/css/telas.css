@@ -82,6 +82,31 @@
     border-radius: 8px;
 }
 
+#alterarDados {
+    position: absolute;
+    background-color: rgb(206, 201, 201);
+    align-items: center;
+    align-self: center;
+    width: 80%;
+    height: 90%;
+    right: 150px;
+    border-radius: 30px;
+}
+
+#alterarDados h1, form {
+    display: grid;
+    place-items: center;
+}
+
+#alterarDados form input {
+    width: 50%;
+}
+
+#alterarDados form {
+    display: flex;
+    flex-direction: row;
+}
+
 /* #fecharPaginaResultado {
     border-radius: 25px;
     color: white;

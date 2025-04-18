@@ -4,7 +4,10 @@ const dividas = document.getElementById("dividasTela");
 const prestacao = document.getElementById("prestacaoTela");
 const pendencias = document.getElementById("pendenciasTela");
 const relatorios = document.getElementById("relatoriosTela");
+const alterar = document.getElementById("alterarDados");
 const resultado = document.getElementById("dividasTelaResultado");
+const barra = document.querySelectorAll(".barra");
+const seta = document.querySelectorAll("#seta");
 
 function transacoesTelaAbrir() {
     transacoes.style.display = "block";
@@ -54,6 +57,14 @@ function relatoriosTelaFechar() {
     relatorios.style.display = "none";
 }
 
+function alterarTelaAbrir() {
+    alterar.style.display = "block"
+}
+
+function alterarTelaFechar() {
+    alterar.style.display = "none"
+}
+
 function dividasListaTelaAbrir() {
     resultado.style.display = "block";
 }
@@ -61,3 +72,7 @@ function dividasListaTelaAbrir() {
 function dividasListaTelaFechar() {
     resultado.style.display = "none";
 }
+
+seta.addEventListiner("click", (event)=>{
+    barra.style.display = "none";
+});
