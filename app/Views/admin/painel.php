@@ -2,12 +2,12 @@
     <nav>
         <div class="barra">
             <div class="grid-container">
-                <div class="box blue" onclick="transacoesTelaAbrir()">Transação</div>
-                <div class="box yellow" onclick="debitosTelaAbrir()">Débitos</div>
-                <div class="box red" onclick="dividasTelaAbrir()">Divídas</div>
-                <div class="box purple" onclick="prestacaoTelaAbrir()">Prestação de contas</div>
-                <div class="box orange" onclick="pendeciasTelaAbrir()">Pendências</div>
-                <div class="box darkblue"  onclick="relatoriosTelaAbrir()">Relatórios</div>
+                <div class="box blue" onclick="transacoesTelaAbrir()"><i class="fa-solid fa-money-bill"></i>&nbspTransação</div>
+                <div class="box yellow" onclick="debitosTelaAbrir()"><i class="fa-solid fa-handshake"></i>&nbspDébitos</div>
+                <div class="box red" onclick="dividasTelaAbrir()"><i class="fa-solid fa-barcode"></i>&nbspDivídas</div>
+                <div class="box purple" onclick="prestacaoTelaAbrir()"><i class="fa-solid fa-square-poll-vertical"></i>&nbspPrestação de contas</div>
+                <div class="box orange" onclick="pendeciasTelaAbrir()"><i class="fa-solid fa-file-contract"></i>&nbspPendências</div>
+                <div class="box darkblue"  onclick="relatoriosTelaAbrir()"><i class="fa-solid fa-print"></i>&nbspRelatórios</div>
                 <!-- <div class="box lightblue"><a href="">Elements</a></div>
                 <div class="box teal"><a href="">Calendar</a></div>
                 <div class="box gold"><a href="">Errors</a></div> -->

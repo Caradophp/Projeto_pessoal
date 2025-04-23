@@ -41,3 +41,71 @@ button {
     display: flex;
     justify-content: right;
 }
+
+/* Estilo da lista geral */
+#resultadoBusca {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Cada item da lista */
+#resultadoBusca li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito hover */
+#resultadoBusca li:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Nome do usuário */
+#resultadoBusca li span {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Ícones de ação */
+#resultadoBusca li .fa-solid {
+    font-size: 18px;
+    margin-left: 12px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+/* Ícone de lápis (editar) */
+#resultadoBusca li .fa-pencil {
+    color: #007bff;
+}
+
+#resultadoBusca li .fa-pencil:hover {
+    color: #0056b3;
+    transform: scale(1.1);
+}
+
+/* Ícone de lixeira (excluir) */
+#resultadoBusca li .fa-trash {
+    color: #dc3545;
+}
+
+#resultadoBusca li .fa-trash:hover {
+    color: #a71d2a;
+    transform: scale(1.1);
+}
+
+/* Avatar */
+#resultadoBusca li img {
+    border-radius: 50%;
+    margin-right: 15px;
+    width: 40px;
+    height: 40px;
+}

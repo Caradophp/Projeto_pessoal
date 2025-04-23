@@ -50,26 +50,25 @@
 .grid-container {
     display: flex;
     flex-direction: column;
-    max-width: 150px;
+    max-width: 100%;
     gap: 10px;
     padding: 20px;
 }
 
 .box {
-    padding: 20px;
+    padding: 24px;
     text-align: center;
-    font-weight: bold;
-    color: white;
-    border-radius: 5px;
+    color: black;
 }
 
-.box a {
-    text-decoration: none;
-    color: white;
+.box:hover {
+    background-color: rgb(178, 180, 181);
+    transition: 2s;
+    cursor: pointer;
 }
 
 /* Cores */
-.blue { background-color: #007bff; }
+/* .blue { background-color: #007bff; }
 .green { background-color: #28a745; }
 .yellow { background-color: #ffc107; }
 .red { background-color: #dc3545; }
@@ -78,4 +77,4 @@
 .darkblue { background-color: #343a40; }
 .lightblue { background-color: #17a2b8; }
 .teal { background-color: #20c997; }
-.gold { background-color: #ffcc00; }
+.gold { background-color: #ffcc00; } */

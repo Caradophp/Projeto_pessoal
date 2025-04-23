@@ -10,11 +10,21 @@ $(document).ready(function () {
             if (response.length > 0) {
                 response.forEach(function (usuario) {
                     $("#resultadoBusca").append(
-                        "<li class='list-group-item'>" + usuario.nome +
-                        "<span class='options'><p onclick='alterarTelaAbrir()'><i class='fa-solid fa-pencil' id='pencil'>" +
-                        "</i></p><a href='http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/" +
-                        usuario.id + "'><i class='fa-solid fa-trash' id='trash'></i></a></span></li>"
-                    );
+                        `<li class="list-group-item d-flex align-items-center justify-content-between shadow-sm rounded my-2 p-3" style="background-color: #f9f9f9;">
+                            <div class="d-flex align-items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" width="40" height="40" class="rounded-circle me-3">
+                                <span class="fw-bold fs-5">${usuario.nome}</span>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <p class="m-0" onclick="alterarTelaAbrir()" title="Editar">
+                                    <i class="fa-solid fa-pencil text-primary" style="cursor: pointer;"></i>
+                                </p>
+                                <a href="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/${usuario.id}" title="Excluir">
+                                    <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
+                                </a>
+                            </div>
+                        </li>`
+                    );        
                 });
             } else {
                 $("#resultadoBusca").html("<p>Nenhum resultado encontrado.</p>");
@@ -41,11 +51,21 @@ $(document).ready(function () {
                 if (response.length > 0) {
                     response.forEach(function (usuario) {
                         $("#resultadoBusca").append(
-                            "<li class='list-group-item'>" + usuario.nome +
-                            "<span class='options'><p onclick='alterarTelaAbrir()'><i class='fa-solid fa-pencil' id='pencil'>" +
-                            "</i></p><a href='http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/" +
-                            usuario.id + "'><i class='fa-solid fa-trash' id='trash'></i></a></span></li>"
-                        );
+                            `<li class="list-group-item d-flex align-items-center justify-content-between shadow-sm rounded my-2 p-3" style="background-color: #f9f9f9;">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="avatar" width="40" height="40" class="rounded-circle me-3">
+                                    <span class="fw-bold fs-5">${usuario.nome}</span>
+                                </div>
+                                <div class="d-flex align-items-center gap-2">
+                                    <p class="m-0" onclick="alterarTelaAbrir()" title="Editar">
+                                        <i class="fa-solid fa-pencil text-primary" style="cursor: pointer;"></i>
+                                    </p>
+                                    <a href="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/${usuario.id}" title="Excluir">
+                                        <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
+                                    </a>
+                                </div>
+                            </li>`
+                        );                        
                     });
                 } else {
                     $("#resultadoBusca").html("<p>Nenhum resultado encontrado.</p>");
