@@ -15,7 +15,9 @@ $(document).ready(function() {
                 if (response.success) {
                     window.location.href = "http://localhost/deucerto/phpup/Model_View_Controller/adminpainel";
                 } else {
-                    $("#mensagemErro").text(response.message);
+                    $("#mensagemErro")
+                    .css("display", "block")
+                    .text(response.message);
                 }
             },
             error: function(xhr, status, error) {

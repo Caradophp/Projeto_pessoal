@@ -1,72 +1,60 @@
+/* style.css */
+
+/* … suas regras globais … */
 * {
-    padding: 0;
     margin: 0;
-}
-
-form {
-    padding: 50px;
-}
-
-.pcorpo {
-    background-color: rgb(121, 121, 123);
-    padding: 25px;
-}
-
-#pfinal {
-    background-color: black;
-    color: white;
-    padding: 25px;
-}
-
-.hinfo {
-    border: 3px solid white;
-    padding: 5px;
-    color: white;
-    /*margin-right: 900px;*/
-}
-
-.infos {
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-}
-
-.lateral {
-    display: flex;
-    flex-direction: column;
-    margin-right: 1380px;
-    background-color: rgb(32, 32, 33);
-}
-
-.lateral a {
-    text-decoration: none;
-    color: white;
-}
-
-.loader {
-    width: 45px;
-    aspect-ratio: 1;
-    --c: no-repeat linear-gradient(#000 0 0);
-    background: 
-      var(--c) 0%   50%,
-      var(--c) 50%  50%,
-      var(--c) 100% 50%;
-    background-size: 20% 100%;
-    animation: l1 1s infinite linear;
+    padding: 0;
+    box-sizing: border-box;
   }
-  @keyframes l1 {
-      0%  {background-size: 20% 100%,20% 100%,20% 100%}
-      33% {background-size: 20% 10% ,20% 100%,20% 100%}
-      50% {background-size: 20% 100%,20% 10% ,20% 100%}
-      66% {background-size: 20% 100%,20% 100%,20% 10% }
-      100%{background-size: 20% 100%,20% 100%,20% 100%}
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
   }
-
-@media only screen and (max-width: 1000px) {
-
-.infos {
+  
+  /* Hero ajustado */
+  .hero-section {
+    background:
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('../img/img3.webp') center center/cover no-repeat;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
- }
-}
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .hero-overlay {
+    text-align: center;
+    padding: 1rem;
+    max-width: 700px;
+  }
+  
+  .hero-overlay .display-4 {
+    font-size: 3rem;
+    font-weight: bold;
+  }
+  
+  .hero-overlay .lead {
+    font-size: 1.25rem;
+  }
+  
+  @media (max-width: 768px) {
+    .hero-overlay .display-4 {
+      font-size: 2rem;
+    }
+    .hero-overlay .lead {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Botão principal */
+  .hero-overlay .btn-primary {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Card styling permanece igual */
+  /* ... */
+  

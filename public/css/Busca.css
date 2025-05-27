@@ -18,6 +18,7 @@ button {
 	background-color: white;
 	display: flex;
 	flex-direction: column-reverse;
+    height: 100%;
 }
 
 .alinha {
@@ -109,3 +110,7 @@ button {
     width: 40px;
     height: 40px;
 }
+
+/* .lateral-menu {
+    height: 100%;
+} */

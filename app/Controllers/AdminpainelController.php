@@ -226,19 +226,21 @@ class AdminpainelController {
     }
 
     public function excluir() {
-
         $uri = $_SERVER['REQUEST_URI'];
-
         $url = explode('/', trim($uri));
-
         $id = $url[6] ?? '';
-        
+
         try {
             $del = new AdminPainelModel();
             $del->excluir($id);
-            header('Location:http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
+
+            // Retorna uma resposta para o Ajax
+            echo json_encode(['success' => true]);
+            http_response_code(200); // Opcional: código HTTP 200 OK
         } catch (\Exception $e) {
-            echo $e->getMessage();
+            // Retorna erro
+            http_response_code(500);
+            echo json_encode(['error' => $e->getMessage()]);
         }
     }
 }

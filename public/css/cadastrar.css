@@ -1,0 +1,18 @@
+#cad-form {
+    background-color: rgb(209, 206, 206);
+    margin-bottom: 0;
+}
+
+#form-footer {
+    padding: 20px;
+}
+
+#mensagemErro {
+    display: none;
+    border-radius: 5px;
+    background-color: red;
+    opacity: 0.6;
+    text-align: center;
+    color: white;
+    padding: 15px;
+}

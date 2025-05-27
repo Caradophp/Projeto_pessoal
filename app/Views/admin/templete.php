@@ -35,64 +35,33 @@
               <a class="nav-link" href="http://localhost/deucerto/phpup/Model_View_Controller/cadastrar">CADASTRAR</a>
              </li>
            </ul>
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp&nbsp
-           &nbsp&nbsp&nbsp&nbsp
            <button class="btn btn-info"><a href="http://localhost/deucerto/phpup/Model_View_Controller/login/sair" style="text-decoration: none; color:black;">SAIR</a></button>
           </div>
          </div>
         </nav>
     </header>
     <main class="pcorpo">
-        <div style="display: flex; flex-direction: row; gap: 200px">
-            {{conteudo | raw}}
+        <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row; gap: 100px">
+                <nav class="lateral-menu">
+                    <div class="barra">
+                        <div class="grid-container">
+                            <div class="box blue" onclick="transacoesTelaAbrir()"><i class="fa-solid fa-money-bill"></i>&nbspTransação</div>
+                            <div class="box yellow" onclick="debitosTelaAbrir()"><i class="fa-solid fa-handshake"></i>&nbspDébitos</div>
+                            <div class="box red" onclick="dividasTelaAbrir()"><i class="fa-solid fa-barcode"></i>&nbspDivídas</div>
+                            <div class="box purple" onclick="prestacaoTelaAbrir()"><i class="fa-solid fa-square-poll-vertical"></i>&nbspPrestação de contas</div>
+                            <div class="box orange" onclick="pendeciasTelaAbrir()"><i class="fa-solid fa-file-contract"></i>&nbspPendências</div>
+                            <div class="box darkblue"  onclick="relatoriosTelaAbrir()"><i class="fa-solid fa-print"></i>&nbspRelatórios</div>
+                        </div>
+                        <form id="busca" method="post">
+                            <label for="procurar">Procurar:</label>
+                            <input name="procurar" id="procurar" class="form-control mr-sm-2" type="search">
+                            <input type="submit" name="Buscar" class="btn btn-outline-info my-2 my-sm-0">
+                        </form>
+                    </div>
+                </nav><br>
+                {{conteudo | raw}}
+            </div>
         </div>
         
         <div id="dividasTelaResultado" style="display:none;">
@@ -127,11 +96,6 @@
         <button onclick="dividasListaTelaFechar()" id="fecharPaginaResultado" class="btn btn-danger">Fechar</button>
     </center>
 </div>
-<!-- 
-<div>
-    {{ erro }}
-</div> -->
-
     </main>
     <footer id="pfinal">
         <ul>
@@ -148,5 +112,6 @@
     <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/tela.js"></script>
     <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/validate.js"></script>
 </body>
 </html>

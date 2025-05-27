@@ -9,15 +9,15 @@ require_once __DIR__ . '/../Middlewares/AuthMiddleware.php';
 
 class conectarModel {
 
-    // private $host = DB_HOST;
-    // private $name = DB_NAME;
-    // private $user = DB_USER;
-    // private $pass = DB_PASS;
+    private $host = "localhost";
+    private $name = "users";
+    private $user = "root";
+    private $pass = "";
 
     public function connect(){
 
         try {
-            $conn = new PDO('mysql:dbname=users;host=localhost', "root", "");
+            $conn = new PDO('mysql:dbname='.$this->name.';host='.$this->host.'', $this->user, $this->pass);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             //echo "Conectado com sucesso!!!";
             return $conn;

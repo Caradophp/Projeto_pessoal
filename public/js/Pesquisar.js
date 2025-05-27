@@ -1,3 +1,6 @@
+
+//Corrigir urgentimente o envio do ID do usuario URGENTE MESMO!!!!!
+
 $(document).ready(function () {
     // Busca automática ao carregar
     $.ajax({
@@ -19,9 +22,9 @@ $(document).ready(function () {
                                 <p class="m-0" onclick="alterarTelaAbrir()" title="Editar">
                                     <i class="fa-solid fa-pencil text-primary" style="cursor: pointer;"></i>
                                 </p>
-                                <a href="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/${usuario.id}" title="Excluir">
-                                    <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
-                                </a>
+                                <div title="Excluir" onclick="confimarExclusao(${usuario.id})" class="trash">
+                                       <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
+                                </div>
                             </div>
                         </li>`
                     );        
@@ -60,9 +63,9 @@ $(document).ready(function () {
                                     <p class="m-0" onclick="alterarTelaAbrir()" title="Editar">
                                         <i class="fa-solid fa-pencil text-primary" style="cursor: pointer;"></i>
                                     </p>
-                                    <a href="http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/${usuario.id}" title="Excluir">
-                                        <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
-                                    </a>
+                                    <div title="Excluir" onclick="confimarExclusao(${usuario.id})" class="trash">
+                                       <i class="fa-solid fa-trash text-danger" style="cursor: pointer;"></i>
+                                    </div>
                                 </div>
                             </li>`
                         );                        

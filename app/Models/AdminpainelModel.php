@@ -32,9 +32,15 @@ class adminpainelModel {
             $conn = new conectarModel();
             $db = $conn->connect();
 
-            $sql = $db->prepare("DELETE FROM usuario WHERE id = :id");
-            $sql->bindParam(":id", $id);
-            $sql->execute();
+            $sql = "DELETE FROM usuario WHERE id = :id";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                throw new \Exception("Erro ao excluir o registro.");
+            }
         } catch (\Throwable $e) {
            echo $e->getMessage();
             

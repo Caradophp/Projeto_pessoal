@@ -1,25 +1,4 @@
-<div style="display: flex; flex-direction: row;">
-    <nav>
-        <div class="barra">
-            <div class="grid-container">
-                <div class="box blue" onclick="transacoesTelaAbrir()"><i class="fa-solid fa-money-bill"></i>&nbspTransação</div>
-                <div class="box yellow" onclick="debitosTelaAbrir()"><i class="fa-solid fa-handshake"></i>&nbspDébitos</div>
-                <div class="box red" onclick="dividasTelaAbrir()"><i class="fa-solid fa-barcode"></i>&nbspDivídas</div>
-                <div class="box purple" onclick="prestacaoTelaAbrir()"><i class="fa-solid fa-square-poll-vertical"></i>&nbspPrestação de contas</div>
-                <div class="box orange" onclick="pendeciasTelaAbrir()"><i class="fa-solid fa-file-contract"></i>&nbspPendências</div>
-                <div class="box darkblue"  onclick="relatoriosTelaAbrir()"><i class="fa-solid fa-print"></i>&nbspRelatórios</div>
-                <!-- <div class="box lightblue"><a href="">Elements</a></div>
-                <div class="box teal"><a href="">Calendar</a></div>
-                <div class="box gold"><a href="">Errors</a></div> -->
-            </div>
-            <form id="busca" method="post">
-                <label for="procurar">Procurar:</label>
-                <input name="procurar" id="procurar" class="form-control mr-sm-2" type="search">
-                <input type="submit" name="Buscar" class="btn btn-outline-info my-2 my-sm-0">
-            </form>
-            </nav><br>
-        </div>
-        <div class = "le">
+<div class = "le">
             <h2 style="text-align: center;">Relatório de Transações</h2>
             <br>
             <div class="container">
@@ -248,4 +227,3 @@
           <button onclick="alterarTelaFechar()" id="fecharPagina" class="btn btn-danger">Fechar</button>
        </center>
  </div>
-</div>
