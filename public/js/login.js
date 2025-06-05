@@ -1,26 +1,25 @@
-const nome = document.getElementById("nome");
+const email = document.getElementById("email");
 const senha = document.getElementById("senha");
-const form = document.getElementById("form");
-const loader = document.getElementById("loader");
-const Message = document.getElementById("Message");
+const form = document.getElementById("loginForm");
+const MessageEmail = document.getElementById("emailEmpty");
+const MessageSenha = document.getElementById("senhaEmpty");
+const button = document.getElementById("confirm");
 
-form.addEventListener("submit", (event)=>{
+button.addEventListener("submit", (event)=>{
     event.preventDefault();
     
     if (nome.value == "") {
-        Message.innerHTML = "O campo nome é Obrigatório";
+        MessageEmail.innerHTML = "O campo email é Obrigatório";
+        MessageSenha.innerHTML = "O campo senha é Obrigatório";
         return;
     }
 
      if (senha.value == "") {
-        Message.innerHTML = "O campo senha é Obrigatório";
+        MessageEmail.innerHTML = "O campo email é Obrigatório";
+        MessageSenha.innerHTML = "O campo senha é Obrigatório";
         return;
     }
 
-    loader.style.display = "block";
-
-    setTimeout(()=>{
-        form.submit();
-    }, 3000); 
+    form.submit();
 
 });

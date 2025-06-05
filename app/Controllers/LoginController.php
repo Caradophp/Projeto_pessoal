@@ -20,7 +20,7 @@ class LoginController
         $title = "Login";
         $script = "Logon";
 
-        echo $this->twig->render('templete.php', [
+        echo $this->twig->render('logintemplete.php', [
             'title' => $title,
             'conteudo' => $this->twig->render("$url.php", []),
             'script' => $script

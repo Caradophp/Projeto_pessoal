@@ -6,7 +6,7 @@ function confimarExclusao(id) {
             method: "POST",
             url: "http://localhost/deucerto/phpup/Model_View_Controller/adminpainel/excluir/" + id,
             success: function (response) {
-                alert("Excluído com sucesso!");
+                alert("Excluído com sucesso! ");
                 location.reload(); // Recarrega a página pra atualizar a lista
             },
             error: function (xhr, status, error) {

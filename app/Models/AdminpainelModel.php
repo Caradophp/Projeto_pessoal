@@ -53,7 +53,7 @@ class adminpainelModel {
             $conn = new conectarModel();
             $db = $conn->connect();
     
-            $sql = $db->prepare("UPDATE FROM usuario SET nome = : nome, email = :email WHERE id = :id");
+            $sql = $db->prepare("UPDATE FROM usuario SET nome = :nome, email = :email WHERE id = :id");
             $sql->bindParam(":nome", $dados['nome']);
             $sql->bindParam(":email", $dados['email']);
             $sql->bindParam(":id", $dados['id']);

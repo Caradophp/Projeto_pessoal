@@ -19,6 +19,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
    <link rel="stylesheet" href="http://localhost/deucerto/phpup/Model_View_Controller/public/css/cadastrar.css">
+   <!-- <link rel="stylesheet" href="http://localhost/deucerto/phpup/Model_View_Controller/public/css/Login.css"> -->
 
    <link rel="shortcut icon" href="http://localhost/deucerto/phpup/Model_View_Controller/public/img/logo.png" type="image/x-icon">
 

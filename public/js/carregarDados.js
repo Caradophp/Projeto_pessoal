@@ -24,7 +24,7 @@ $("#busca").submit(function (event) {
                             "</form>" +
                            " <br>" +
                            " <center>" +
-                               " <button onclick=1alterarTelaFechar()1 id='echarPagina' class='btn btn-danger'>Fechar</button>" +
+                               " <button onclick='alterarTelaFechar()' id='fecharPagina' class='btn btn-danger'>Fechar</button>" +
                            " </center>" +
                         "</div>"
                     );

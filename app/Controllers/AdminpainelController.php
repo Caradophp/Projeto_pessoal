@@ -228,7 +228,7 @@ class AdminpainelController {
     public function excluir() {
         $uri = $_SERVER['REQUEST_URI'];
         $url = explode('/', trim($uri));
-        $id = $url[6] ?? '';
+        $id = $url[7] ?? '';
 
         try {
             $del = new AdminPainelModel();
