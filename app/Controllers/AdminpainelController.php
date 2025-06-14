@@ -26,7 +26,6 @@ class AdminpainelController {
         $url = 'painel';
         $title = 'Painel';
 
-        //$this->buscar();
 
         echo $this->twig->render('templete.php', [ 
             'title' => $title,
@@ -38,11 +37,9 @@ class AdminpainelController {
 
         $relatorio = $this->relatorioUltimoMes();
         $resultado = $this->usuariosSelecionar();
-        //$resultBusca = $this->buscar() ?? '';
         return $this->twig->render("$page.php", [ 
                'listaUsuario' => $resultado,
                'dados' => $relatorio,
-               //'resultado' => $resultBusca
         ]);
     }
 
@@ -53,8 +50,6 @@ class AdminpainelController {
         $resultado = $busca->pesquisar($dado);
         echo json_encode($resultado);
         exit();
-        // for ($i = 0; $i < count($resultado) && $i < 5; $i++) {
-        // echo $resultado[$i]['nome'] . "<br>"; // ou qualquer outro campo que tiver
     }
 
     public function transacao() {
@@ -92,15 +87,11 @@ class AdminpainelController {
             $status = $_POST;  // Obtém o status do formulário POST
             
             try {
-                // Chama o método da model para buscar os dados
                 $inserirTransacao = new TransacaoModel();
-                $resultado = $inserirTransacao->dividaListar($status);  // Recebe os dados da consulta
-                //var_dump($resultado);
-                // Carrega o template Twig
-                $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Views/admin'); // Coloque o caminho correto
+                $resultado = $inserirTransacao->dividaListar($status); 
+                $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Views/admin');
                 $twig = new \Twig\Environment($loader);
-                
-                // Passa os dados para o template
+            
                 echo $this->twig->render('templete.php', [ 
                     'title' => $title,
                     'conteudo' => $this->verificaPagina($url),
@@ -132,14 +123,14 @@ class AdminpainelController {
 
     public function relatorioUltimoMes() {
         $transacaoModel = new TransacaoModel();
-        $relatorio = $transacaoModel->listarTransacoesMensal(); // Busca do banco
+        $relatorio = $transacaoModel->listarTransacoesMensal();
     
         return $relatorio;
     }
 
     public function relatorio() {
         $transacaoModel = new TransacaoModel();
-        $dados = $transacaoModel->listarTransacoes(); // Busca do banco
+        $dados = $transacaoModel->listarTransacoes();
     
         echo $this->twig->render('relatorio.php', [
             'dados' => $dados
@@ -150,7 +141,7 @@ class AdminpainelController {
     public function gerarPDF() {
         
         $transacaoModel = new TransacaoModel();
-        $dados = $transacaoModel->listarTransacoes(); // Busca do banco
+        $dados = $transacaoModel->listarTransacoes();
         
         $pdf = new FPDF();
         $pdf->AddPage();
@@ -189,17 +180,8 @@ class AdminpainelController {
         try {
             $inserirDebito = new TransacaoModel();
             $resultado = $inserirDebito->usuariosBuscar();
-            //var_dump($resultado['usuario_id']);
-            //header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
-
             $loader = new \Twig\Loader\FilesystemLoader(__DIR__ . '/../Views/admin'); // Coloque o caminho correto
             $twig = new \Twig\Environment($loader);
-            
-            // Passa os dados para o template
-            // echo $this->twig->render('painel.php', [ 
-            //     'listaUsuario' => $resultado,
-            // ]);
-
             return $resultado;
         } catch (\Throwable $e) {
             echo "Erro: " . $e->getMessage();
@@ -211,8 +193,6 @@ class AdminpainelController {
         $uri = $_SERVER['REQUEST_URI'];
 
         $url = explode('/', trim($uri));
-
-        //$id = $url[6] ?? '';
 
         $dados = $_POST;
         
@@ -234,11 +214,9 @@ class AdminpainelController {
             $del = new AdminPainelModel();
             $del->excluir($id);
 
-            // Retorna uma resposta para o Ajax
             echo json_encode(['success' => true]);
-            http_response_code(200); // Opcional: código HTTP 200 OK
+            http_response_code(200);
         } catch (\Exception $e) {
-            // Retorna erro
             http_response_code(500);
             echo json_encode(['error' => $e->getMessage()]);
         }

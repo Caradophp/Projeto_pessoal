@@ -18,6 +18,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/Logon.js"></script>
+
+    <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/repass.js"></script>
     <!-- <script src="http://localhost/deucerto/phpup/Model_View_Controller/public/js/login.js"></script> -->
 
     <link rel="shortcut icon" href="http://localhost/deucerto/phpup/Model_View_Controller/public/img/logo.png" type="image/x-icon">

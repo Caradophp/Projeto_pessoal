@@ -2,6 +2,7 @@
 
 namespace app\Controllers;
 
+use app\Middlewares\AuthMiddleware;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use app\Models\LoginModel;
@@ -13,6 +14,9 @@ class AlterarSenhaController
 
     public function index()
     {
+
+        AuthMiddleware::AuthPass();
+
         $loader = new FilesystemLoader(__DIR__ . '/../Views/');
         $this->twig = new Environment($loader);
 

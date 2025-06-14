@@ -1,58 +1,56 @@
 <?php
 
+namespace app\functions;
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use app\Models\loginModel;
 
-require 'vendor/autoload.php';
+// require_once '../../vendor/autoload.php';
 
-class SendEmail {
+class SendMailer {
     
     private $mail;
 
-    public function configurarEmail($email, $senha)
-    {
+    private $host = 'smtp.gmail.com';
+    private $username = 'contatolucianofriebe@gmail.com';
+    private $password = 'fink sfcf eosb otaj';
+    private $port = 587;
+
+    public function __construct() {
         $this->mail = new PHPMailer(true);
 
-        // Configurações do servidor SMTP
         $this->mail->isSMTP();
-        $this->mail->Host       = 'smtp.gmail.com';
-        $this->mail->SMTPAuth   = true;
-        $this->mail->Username   = $email; // Seu email
-        $this->mail->Password   = $senha; // Sua senha
-        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $this->mail->Port       = 465;
-
-        // Remetente
-        $this->mail->setFrom('seuemail@gmail.com', 'Seu Nome');
-
-        // Configurações padrão
-        $this->mail->isHTML(true);
+        $this->mail->Host = $this->host;
+        $this->mail->SMTPAuth = true;
+        $this->mail->Username = $this->username;
+        $this->mail->Password = $this->password;
+        $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $this->mail->Port = $this->port;
     }
 
-    public function enviarEmail($destinatario, $nomeDestinatario, $assunto, $mensagemHtml, $mensagemTexto = '')
-    {
+    public function enviarCodigo($emailDestinatario) {
         try {
-            // Destinatário
-            $this->mail->addAddress($destinatario, $nomeDestinatario);
+            $codigo = mt_rand(100000, 999999);
 
-            // Conteúdo do e-mail
-            $this->mail->Subject = $assunto;
-            $this->mail->Body    = $mensagemHtml;
-            $this->mail->AltBody = $mensagemTexto ?: strip_tags($mensagemHtml);
+            loginModel::salvarCodigo($emailDestinatario, $codigo);
 
-            // Enviar
+            $this->mail->setFrom($this->username, 'Suporte FinanTech');
+            $this->mail->addAddress($emailDestinatario);
+
+            $this->mail->CharSet = 'UTF-8';
+            $this->mail->Encoding = 'base64';
+
+            $this->mail->Subject = 'Recuperação de senha';
+            $this->mail->Body = "Seu código de recuperação de senha é: " . $codigo;
+
             $this->mail->send();
-            return true;
+
+            return $codigo;
         } catch (Exception $e) {
-            // Você pode salvar esse erro no log se quiser
-            error_log('Erro ao enviar email: ' . $this->mail->ErrorInfo);
+            echo json_encode( ["Erro", "Erro ao enviar email: " . $this->mail->ErrorInfo]);
             return false;
         }
-    }
-
-    public function adicionarAnexo($caminho, $nome = '')
-    {
-        $this->mail->addAttachment($caminho, $nome);
     }
 }
 

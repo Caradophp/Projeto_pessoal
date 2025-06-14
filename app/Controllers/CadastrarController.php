@@ -32,23 +32,48 @@ class CadastrarController
         ini_set('session.gc_maxlifetime', 1800);
         session_start();
         $nome =  htmlspecialchars(trim($_POST['nome'] ?? ''), ENT_QUOTES, 'UTF-8');
-        $email = $_POST['email'];
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $tipo_pessoa = $_POST['tipo_pessoa'];
+        $telefone = filter_var($_POST['telefone'], FILTER_SANITIZE_NUMBER_INT);
+        $cpf = filter_var($_POST['cpf'], FILTER_SANITIZE_NUMBER_INT);
+        $cnpj = filter_var($_POST['cnpj'], FILTER_SANITIZE_NUMBER_INT);
 
-        if($_POST['nome'] != "" && $_POST['nome'] != null) {
-            if ($_POST['email'] != "" && $_POST['email'] != null) {
-                if ($_POST['senha'] != "" && $_POST['senha'] != null) {
-                    try {
-                        $insert = new cadastrarModel();
-                        $insert->insert($nome, $email, $senha);
+        if ($tipo_pessoa == 'FISICA') {
+            if ($cpf != "" && $cpf != null) {
+                $valido = true;
+            }
+        }
 
-                        $_SESSION['nome'] = $nome;
-                        $_SESSION['email'] = $email;
-                        $_SESSION['senha'] = $senha;
-                        echo json_encode(['success' => true]);
-                        exit();
-                    } catch (\Throwable $th) {
-                        echo json_encode(['success' => false, 'message' => "ERRO: " . $th->getMessage()]);
+        if ($tipo_pessoa == 'JURIDICA') {
+            if ($cnpj != "" && $cnpj != null) {
+                $valido = true;
+            }
+        }
+
+        if($nome != "" && $nome != null) {
+            if ($email != "" && $email != null) {
+                if ($senha != "" && $senha != null) {
+                    if ($telefone != "" && $telefone != null) {
+                        if ($valido) {
+                            try {
+
+                                $user = [$nome, $email, $senha, $tipo_pessoa, $telefone, $cpf, $cnpj];
+
+                                $insert = new cadastrarModel();
+                                $insert->insert($user);
+
+                                $_SESSION['nome'] = $nome;
+                                $_SESSION['email'] = $email;
+                                $_SESSION['senha'] = $senha;
+                                echo json_encode(['success' => true]);
+                                exit();
+                            } catch (\Throwable $th) {
+                                echo json_encode(['success' => false, 'message' => "ERRO: " . $th->getMessage()]);
+                            }  
+                        } 
+                    } else {
+                       echo json_encode(['success' => false, 'message' => 'O Campo telefone deve ser preenchido']);
                     }
                 } else {
                     echo json_encode(['success' => false, 'message' => 'Campo senha deve ser preenchido']);
@@ -56,7 +81,6 @@ class CadastrarController
             } else {
                 echo json_encode(['success' => false, 'message' => 'Campo email deve ser preenchido']);
             }
-        //var_dump($senha);
        } else {
          echo json_encode(['success' => false, 'message' => 'Campo nome deve ser preenchido']);
        }

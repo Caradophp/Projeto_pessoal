@@ -4,6 +4,7 @@ namespace app\Controllers;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use app\Core\Core;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -22,6 +23,11 @@ class ContatoController {
 
         $url = 'contato';
         $title = 'Contato';
+
+        // $core = new Core();
+        // $core->rend('templete.php', [
+        // 'title' => $title,
+        // 'conteudo' =>$core->verificaPagina($url)]);
 
        echo $this->twig->render('templete.php', [
         'title' => $title,

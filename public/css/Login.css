@@ -30,6 +30,7 @@
 #login-form {
     position: relative;
     z-index: 1;
+    opacity: 1;
     box-shadow: 0 0 10px rgba(0,0,0,0.7);
     background-color: #fff;
     color: black;
@@ -69,6 +70,78 @@
     align-items: center;
 }
 
+.footer h6 {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+
+.footer h6 p {
+    color: blue;
+}
+
 .error {
     font-size: 10px;
+}
+
+#senhaModel {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    left: 410px;
+    z-index: 1;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 1PX black;
+    background-color: #fff;
+    transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.dec {
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+#message {
+    color: redz;
+}
+
+#repass {
+    color: #fff;
+    box-shadow: 1px 1px 1px black;
+}
+
+#repass-close {
+    box-shadow: 1px 1px 1px black;
+}
+
+#codeModel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50px;
+    left: 540px;
+    z-index: 1;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 1px 1PX black;
+    background-color: #fff;
+    /* transform: translateY(-100%);
+    transition: transform 0.5s ease-in-out; */
+    overflow: hidden;
+}
+
+#verifique {
+    color: #fff;
+    box-shadow: 1px 1px 1px black;
+}
+
+#close-verifique {
+    box-shadow: 1px 1px 1px black;
 }

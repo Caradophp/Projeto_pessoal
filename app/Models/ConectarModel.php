@@ -12,7 +12,7 @@ class conectarModel {
     private $host = "localhost";
     private $name = "users";
     private $user = "root";
-    private $pass = "";
+    private $pass = "1234";
 
     public function connect(){
 

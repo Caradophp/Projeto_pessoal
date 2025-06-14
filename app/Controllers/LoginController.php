@@ -5,6 +5,7 @@ namespace app\Controllers;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use app\Models\LoginModel;
+use app\functions\SendMailer;
 
 class LoginController 
 {
@@ -19,6 +20,15 @@ class LoginController
         $url = "login";
         $title = "Login";
         $script = "Logon";
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if (isset($_SESSION['email'])) {
+            header('Location: http://localhost/deucerto/phpup/Model_View_Controller/adminpainel');
+            exit;
+        }
 
         echo $this->twig->render('logintemplete.php', [
             'title' => $title,
@@ -53,6 +63,45 @@ class LoginController
                 echo json_encode(['success' => false, 'message' => 'Usuário ou senha incorretos!']);
                 exit();
             }
+        }
+    }
+
+    public function changePass() {
+
+        $email = $_POST['email'];
+
+        $model = new LoginModel();
+        $validate = $model->emailForSenha($email);
+
+        if ($validate) {
+           $recuperacao = new SendMailer();
+           $codigoenviado = $recuperacao->enviarCodigo($email);
+
+           if ($codigoenviado) {
+                echo json_encode(['success' => true, 'message' => 'Código enviado com sucesso']);
+                exit();
+           } else {
+                echo json_encode(["message", "Erro ao enviar código"]);
+           }
+            
+        } else {
+            echo json_encode(["message", "Email inválido"]);
+        }
+    }
+
+    public function confirmarCodigo() {
+
+        $codigo = $_POST['codigo'];
+
+        if (LoginModel::verifyCode($codigo)) {
+            // ini_set('session.gc_maxlifetime', 1800);
+            session_start();
+
+            $_SESSION['codigo'] = $codigo;
+
+            Header('Location: http://localhost/deucerto/phpup/Model_View_Controller/alterarsenha');
+        } else {
+            echo json_encode(["result", "Código inválido"]);
         }
     }
 
