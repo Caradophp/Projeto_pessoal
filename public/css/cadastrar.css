@@ -1,17 +1,55 @@
+.login-body {
+    position: relative;
+    background-image: url("http://localhost/deucerto/phpup/Model_View_Controller/public/img/img1.webp");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.login-body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 0;
+}
+
 #cad-form {
+    position: relative;
     display: flex;
     flex-direction: row;
     gap: 50px;
     background-color: rgb(252, 250, 250);
-    box-shadow: 1px 1px 1px 1px black;
-    margin: 200px;
-    margin-top: 60px;
-    margin-bottom: 0px;
+    box-shadow: 1px 1px 5px 1px black;
+    padding: 30px;
+    margin: 60px auto;
+    width: fit-content;
+    border-radius: 10px;
+    z-index: 1;
+    opacity: 1;
 }
 
-#cad-form div img {
-    height: 550px;
-    width: 550px;
+.img-div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.img-div img {
+    height: 350px;
+    width: 350px;
+}
+
+.img-div h2,p {
+    margin-left: 55px;
 }
 
 #form-footer {
@@ -26,9 +64,11 @@
     text-align: center;
     color: white;
     padding: 15px;
+    margin-bottom: 10px;
 }
 
 #form {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
