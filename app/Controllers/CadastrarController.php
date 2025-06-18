@@ -36,7 +36,6 @@ class CadastrarController
         $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
         $senha = htmlspecialchars(trim($_POST['senha'] ?? ''), ENT_QUOTES, 'UTF-8');
         $tipo_pessoa = $_POST['tipo_pessoa'];
-        $telefone = filter_var($_POST['telefone'], FILTER_SANITIZE_NUMBER_INT);
         $cpf = filter_var($_POST['cpf'], FILTER_SANITIZE_NUMBER_INT);
         $cnpj = filter_var($_POST['cnpj'], FILTER_SANITIZE_NUMBER_INT);
 
