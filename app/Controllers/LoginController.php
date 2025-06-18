@@ -12,6 +12,9 @@ class LoginController
 
     private $twig;
 
+    /**
+     * Renderiza a tela
+     */
     public function index()
     {
         $loader = new FilesystemLoader(__DIR__ . '/../Views/');

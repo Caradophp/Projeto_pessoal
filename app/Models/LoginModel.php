@@ -5,8 +5,15 @@ namespace app\Models;
 use app\Models\ConectarModel;
 use PDO;
 
+/**
+ * Model responsável pela verificação dos dados do usuário relacionados a tela de login
+ */
 class loginModel
 {
+
+    /**
+     * Método que verifica o email e senha fornacidos pelo usuário e autoriza ou não sua entradano sistema
+     */
     public function verificacao($email, $senha)
     {
         $conn = new conectarModel();
@@ -23,12 +30,15 @@ class loginModel
         }
 
         if (password_verify($senha, $resultado['senha'])) {
-            return $resultado; // retorna os dados do usuário
+            return $resultado;
         }
 
         return false;
     }
 
+    /**
+     * @author Luciano Friebe Feigl
+     */
     public static function salvarCodigo($email, $codigo) {
         $conn = new ConectarModel();
         $db = $conn->connect();
