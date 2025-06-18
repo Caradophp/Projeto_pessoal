@@ -34,7 +34,9 @@
         </div>
         <div id="form-footer">
             <div id="mensagemErro"></div>
-            <input type="submit" value="enviar" class="btn btn-info" id="confirm">
+            <input type="submit" value="Cadastrar" class="btn btn-info" id="confirm">
+            <br><br>
+            <h6>Já possuí cadastro? <a href="http://localhost/deucerto/phpup/Model_View_Controller/login">Faça login</a></h6>
         </div>
     </form>
 </div>
