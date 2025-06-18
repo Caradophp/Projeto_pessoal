@@ -13,6 +13,7 @@ class AuthMiddleware {
     public static function AuthPass() {
         if(!isset($_SESSION['codigo'])) {
             header('Location: http://localhost/deucerto/phpup/Model_View_Controller/login');
+            exit();
         }
     }
 }

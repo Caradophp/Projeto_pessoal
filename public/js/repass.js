@@ -64,7 +64,12 @@ $(document).ready( function() {
             },
             dataType: "json",
             success: function(response) {
-                console.log(success.response);
+                console.log(response.success);
+                if (response.success) {
+                    window.location.href = "http://localhost/deucerto/phpup/Model_View_Controller/alterarsenha";
+                } else {
+                    console.log("DEU ERRADO");
+                }
             },
             error: function(xhr, status, error) {
                 console.log(error);

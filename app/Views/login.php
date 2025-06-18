@@ -16,6 +16,8 @@
         </div>
         <div class="footer">
             <h6>Esqueceu sua Senha? <p onclick="openModel()">Clique aqui</p></h6>
+            <br>
+            <h6>Ainda não é cadastrado? <a href="http://localhost/deucerto/phpup/Model_View_Controller/cadastrar">Cadastrar</a></h6>
             <center>
                 <p id="mensagemErro" class="alert alert-danger" style="display:none"></p>
             </center><br>

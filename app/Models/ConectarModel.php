@@ -3,16 +3,16 @@
 namespace app\Models;
 
 use PDO;
-use app\functions\db_config;  
 
 require_once __DIR__ . '/../Middlewares/AuthMiddleware.php';
+require_once __DIR__ . '/../functions/db_config.php';
 
 class conectarModel {
 
-    private $host = "localhost";
-    private $name = "users";
-    private $user = "root";
-    private $pass = "1234";
+    private $host = DB_HOST;
+    private $name = DB_NAME;
+    private $user = DB_USER;
+    private $pass = DB_PASS;
 
     public function connect(){
 

@@ -206,9 +206,7 @@ class AdminpainelController {
     }
 
     public function excluir() {
-        $uri = $_SERVER['REQUEST_URI'];
-        $url = explode('/', trim($uri));
-        $id = $url[7] ?? '';
+        $id = $_POST['id'];
 
         try {
             $del = new AdminPainelModel();
@@ -218,7 +216,7 @@ class AdminpainelController {
             http_response_code(200);
         } catch (\Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => $e->getMessage()]);
+            echo json_encode(['success' => false, 'error' => $e->getMessage()]);
         }
     }
 }

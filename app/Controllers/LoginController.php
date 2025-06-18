@@ -30,7 +30,7 @@ class LoginController
             exit;
         }
 
-        echo $this->twig->render('logintemplete.php', [
+        echo $this->twig->render('templedes/logintemplete.php', [
             'title' => $title,
             'conteudo' => $this->twig->render("$url.php", []),
             'script' => $script
@@ -91,15 +91,18 @@ class LoginController
 
     public function confirmarCodigo() {
 
-        $codigo = $_POST['codigo'];
+        ini_set('session.gc_maxlifetime', 1800);
+        session_start();
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $codigo = $_POST['codigo'];
+        }
+        
         if (LoginModel::verifyCode($codigo)) {
-            // ini_set('session.gc_maxlifetime', 1800);
-            session_start();
-
             $_SESSION['codigo'] = $codigo;
 
-            Header('Location: http://localhost/deucerto/phpup/Model_View_Controller/alterarsenha');
+            echo json_encode(['success' => true]);
+            exit();
         } else {
             echo json_encode(["result", "Código inválido"]);
         }

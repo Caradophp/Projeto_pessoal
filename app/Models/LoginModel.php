@@ -22,7 +22,7 @@ class loginModel
             return false;
         }
 
-        if ($resultado['senha'] === md5($senha)) {
+        if (password_verify($senha, $resultado['senha'])) {
             return $resultado; // retorna os dados do usuário
         }
 

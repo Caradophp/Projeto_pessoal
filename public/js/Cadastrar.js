@@ -5,11 +5,23 @@ $(document).ready(function() {
         var nome = $("#nome").val();
         var email = $("#email").val();
         var senha = $("#senha").val();
-
+        var telefone = $("#telefone").val();
+        var tipo_pessoa = $("#tipo_pessoa").val();
+        var cpf = $("#cpf").val();
+        var cnpj = $("#cnpj").val();
+        
         $.ajax({
             url: "http://localhost/deucerto/phpup/Model_View_Controller/cadastrar/cadastrar",
             type: "POST",
-            data: { nome: nome, email: email, senha: senha },
+            data: { 
+                    nome: nome,
+                    email: email,
+                    senha: senha,
+                    telefone: telefone,
+                    tipo_pessoa: tipo_pessoa,
+                    cpf: cpf,
+                    cnpj: cnpj
+                  },
             dataType: "json",
             success: function(response) {
                 if (response.success) {

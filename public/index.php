@@ -2,6 +2,8 @@
 
 require_once '../vendor/autoload.php';
 
+//require_once '../src/classes/Routes.php';
+
 use app\Controllers\HomeController;
 use App\Classes\Routes;
 

@@ -75,8 +75,6 @@
               <div id="userMenu" class="user-menu">
                 <a href="http://localhost/deucerto/phpup/Model_View_Controller/login"
                    class="btn btn-sm btn-outline-info">Login</a>
-                <a href="http://localhost/deucerto/phpup/Model_View_Controller/cadastrar"
-                   class="btn btn-sm btn-outline-info">Cadastrar</a>
               </div>
             </li>
           </ul>
@@ -89,7 +87,7 @@
     {{conteudo | raw}}
   </main>
 
-  <footer id="pfinal" class="mt-auto py-3 bg-light text-dark" style="position: relative; bottom: 0; width: 100%;">
+  <footer id="pfinal" class="mt-auto py-3 bg-light text-dark" style="position: relative; bottom: 0; width: 100%; height: 100%;">
     <div class="container text-center">
       <ul class="list-inline mb-2">
         <li class="list-inline-item"><i class="fa-brands fa-facebook"></i>&nbsp;Facebook</li>
