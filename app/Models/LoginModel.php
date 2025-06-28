@@ -12,7 +12,7 @@ class loginModel
 {
 
     /**
-     * Método que verifica o email e senha fornacidos pelo usuário e autoriza ou não sua entradano sistema
+     * Método que verifica o email e senha fornacidos pelo usuário e autoriza ou não sua entrada no sistema
      */
     public function verificacao($email, $senha)
     {

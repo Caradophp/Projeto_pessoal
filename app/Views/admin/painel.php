@@ -14,11 +14,11 @@
                     {% for item in dados %}
                     <tr>
                         <td>{{ item.id }}</td>
-                        <td>{{ item.usuario_id }}</td>
+                        <td>{{ item.usuario }}</td>
                         <td>{{ item.descricao }}</td>
                         <td>R$ {{ item.valor }}</td>
                         <td>{{ item.data_debito }}</td>
-                        <td>{{ item.status }}</td>
+                        <td>{{ item.situacao }}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -216,7 +216,7 @@
     <h1>Alterar dados</h1>
     <form action="">
         <label for="id">id:</label>
-        <input type="number" name="id" id="id" value="1" class="form-control" disabled><br><br>
+        <input type="number" name="id" id="id" value="" class="form-control" disabled><br><br>
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" class="form-control"><br><br>
         <label for="email">Email:</label>

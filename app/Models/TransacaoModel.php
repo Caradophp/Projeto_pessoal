@@ -69,7 +69,7 @@ class TransacaoModel
 
             try {
                 $sql = $db->prepare(
-                    "INSERT INTO debitos (usuario_id, descricao, valor, data_debito, categoria, forma_pagamento, referencia, status, observacao) VALUES (:usuario_id, :descricao, :valor, :data_debito, :categoria, :forma_pagamento, :referencia, :status, :observacao)"
+                    "INSERT INTO debitos (usuario_id, descricao, valor, data_debito, categoria, forma_pagamento, referencia, situacao, observacao) VALUES (:usuario_id, :descricao, :valor, :data_debito, :categoria, :forma_pagamento, :referencia, :situacao, :observacao)"
                 );
                 $sql->bindParam(':usuario_id', $usuario_id);
                 $sql->bindParam(':descricao', $descricao);
@@ -78,7 +78,7 @@ class TransacaoModel
                 $sql->bindParam(':categoria', $categoria);
                 $sql->bindParam(':forma_pagamento', $forma_pagamento);
                 $sql->bindParam(':referencia', $referencia);
-                $sql->bindParam(':status', $status);
+                $sql->bindParam(':situacao', $status);
                 $sql->bindParam(':observacao', $observacao);
                 $sql->execute();
             } catch (\Throwable $e) {
@@ -125,10 +125,18 @@ class TransacaoModel
     public function listarTransacoesMensal()
     {
         try {
-            $conn = new conectarModel(); // Instância da conexão com o banco
+            $conn = new conectarModel();
             $db = $conn->connect();
 
-            $sql = $db->prepare("SELECT * FROM debitos ORDER BY id");
+            $sql = $db->prepare("SELECT d.id AS id,
+                                    d.descricao AS descricao, 
+                                    d.valor AS valor, 
+                                    d.data_debito AS data_debito, 
+                                    d.situacao AS situacao, 
+                                    u.nome AS usuario 
+                                FROM debitos d
+                                INNER JOIN usuario u ON d.usuario_id = u.id
+                                ORDER BY id");
             $sql->execute();
 
             return $sql->fetchAll(PDO::FETCH_ASSOC);

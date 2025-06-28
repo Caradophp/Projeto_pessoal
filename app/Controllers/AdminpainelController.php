@@ -124,7 +124,7 @@ class AdminpainelController {
     public function relatorioUltimoMes() {
         $transacaoModel = new TransacaoModel();
         $relatorio = $transacaoModel->listarTransacoesMensal();
-    
+
         return $relatorio;
     }
 
